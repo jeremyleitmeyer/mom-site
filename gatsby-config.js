@@ -5,7 +5,9 @@ module.exports = {
     author: `@gatsbyjs`,
   },
   plugins: [
+    // SEO
     `gatsby-plugin-react-helmet`,
+    // Source Images from Filesystem
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -13,8 +15,20 @@ module.exports = {
         path: `${__dirname}/src/images`,
       },
     },
+    // Styling
+    `gatsby-plugin-styled-components`,
+    // Image Transformers
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
+    // Instagram Source
+    {
+      resolve: `gatsby-source-instagram`,
+      options: {
+        type: `user-profile`,
+        username: `username`, // TODO: Change to her IG Handle
+      },
+    },
+    // PWA Manifest
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
@@ -27,8 +41,7 @@ module.exports = {
         icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
       },
     },
-    // this (optional) plugin enables Progressive Web App + Offline functionality
-    // To learn more, visit: https://gatsby.dev/offline
-    // `gatsby-plugin-offline`,
+    // Progressive Web App + Offline functionality
+    `gatsby-plugin-offline`,
   ],
 }
